@@ -1,7 +1,7 @@
 .cards__heading {
     max-width: calc(100% - 30px);
     font-size: 24px;
-    color:black;
+    color: black;
     font-weight: 900;
     line-height: 1;
     white-space: nowrap;

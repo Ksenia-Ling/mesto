@@ -20,3 +20,12 @@
     transition-duration: 0.1s;
     transition-timing-function: ease-in-out;
 }
+
+@media all and (max-width: 520px) {
+    .popup__close-button {
+        width: 20px;
+        height: 20px;
+        top: -36px;
+        right: 0;
+    }
+}
