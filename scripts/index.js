@@ -9,20 +9,24 @@ let jobInput = userDataForm.querySelector('.popup__input_job');
 let userName = content.querySelector('.profile__heading');
 let userJob = content.querySelector('.profile__subheading');
 
-function togglePopupWindow() {
+function openPopupWindow() {
     popupWindow.classList.toggle('popup_opened');
     nameInput.value = userName.textContent;
     jobInput.value = userJob.textContent;
 }
 
-editProfileButton.addEventListener('click', togglePopupWindow);
-popupClose.addEventListener('click', togglePopupWindow);
+function closePopupWindow() {
+    popupWindow.classList.toggle('popup_opened');
+}
+
+editProfileButton.addEventListener('click', openPopupWindow);
+popupClose.addEventListener('click', closePopupWindow);
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     userName.textContent = nameInput.value; 
     userJob.textContent = jobInput.value;
-    togglePopupWindow();
+    closePopupWindow();
 }
 
 userDataForm.addEventListener('submit', formSubmitHandler);

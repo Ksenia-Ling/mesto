@@ -8,101 +8,96 @@
     <title>Mesto Russia</title>
 </head>
 
-<body class="root">
-    <div class="page">
-        <header class="header">
-            <img class="header__logo" src="./images/header/logo.svg" alt="лого">
-        </header>
-        <main class="content">
-            <section class="profile">
-                <img class="profile__avatar" src="./images/profile/avatar.jpg" alt="аватар">
-                <div class="profile__info">
-                    <div class="profile__user-edit">
-                        <div class="profile__user-data">
-                            <h1 class="profile__heading">Жак-Ив Кусто</h1>
-                            <p class="profile__subheading">Исследователь океана</p>
-                        </div>
-                        <button class="profile__edit-button" type="button">
-                        </button>
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/header/logo.svg" alt="лого 'Mesto Russia'">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <img class="profile__avatar" src="./images/profile/avatar.jpg" alt="аватар пользователя">
+            <div class="profile__info">
+                <div class="profile__user-edit">
+                    <div class="profile__user-data">
+                        <h1 class="profile__heading">Жак-Ив Кусто</h1>
+                        <p class="profile__subheading">Исследователь океана</p>
                     </div>
-                    <button class="profile__add-button" type="button">
+                    <button class="profile__edit-button" type="button" aria-label="Кнопка редактирования профиля">
                     </button>
                 </div>
-            </section>
-            <section class="elements">
-                <ul class="cards">
-                    <li class="cards__element">
-                        <img class="cards__image" src="./images/elements/tulskaya_oblast.jpg" alt="Тульская область">
-                        <div class="cards__description">
-                            <h2 class="cards__heading">Тульская область</h2>
-                            <button class="cards__like-button" type="button">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="cards__element">
-                        <img class="cards__image" src="./images/elements/baikal_irkutsk.jpg"
-                            alt="Озеро Байкал, Иркутск">
-                        <div class="cards__description">
-                            <h2 class="cards__heading">Озеро Байкал, Иркутск</h2>
-                            <button class="cards__like-button" type="button">
-                            </button>
-                        </div>
-                    </li>
-                    <li class="cards__element">
-                        <img class="cards__image" src="./images/elements/kamchatka.jpg" alt="Камчатка">
-                        <div class="cards__description">
-                            <h2 class="cards__heading">Камчатка</h2>
-                            <button class="cards__like-button" type="button">
-                            </button>
-                        </div>
-                    </li>
-
-                    <li class="cards__element">
-                        <img class="cards__image" src="./images/elements/primorsky_krai_nahodka.jpg"
-                            alt="Находка, Приморский край">
-                        <div class="cards__description">
-                            <h2 class="cards__heading">Находка, Приморский край</h2>
-                            <button class="cards__like-button" type="button">
-                            </button>
-                        </div>
-                    </li>
-
-                    <li class="cards__element">
-                        <img class="cards__image" src="./images/elements/ruskeala_karelia.jpg"
-                            alt="Рускеала, респ. Карелия">
-                        <div class="cards__description">
-                            <h2 class="cards__heading">Рускеала, респ. Карелия</h2>
-                            <button class="cards__like-button" type="button">
-                            </button>
-                        </div>
-                    </li>
-
-                    <li class="cards__element">
-                        <img class="cards__image" src="./images/elements/saint-petersburg.jpg" alt="Санкт-Петербург">
-                        <div class="cards__description">
-                            <h2 class="cards__heading">Санкт-Петербург</h2>
-                            <button class="cards__like-button">
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__author">
-                © 2022 Ксения Козырева
-            </p>
-        </footer>
-        <div class="popup">
-            <div class="popup__container">
-                <button type="button" class="popup__close-button"></button>
-                <h3 class="popup__heading">Редактировать профиль</h3>
-                <form class="popup__input-container">
-                    <input type="text" class="popup__input popup__input_name" name="name" value="">
-                    <input type="text" class="popup__input popup__input_job" name="job" value="">
-                    <button type="submit" class="popup__submit-button">Сохранить</button>
-                </form>
+                <button class="profile__add-button" type="button" aria-label="Кнопка добавления карточек">
+                </button>
             </div>
+        </section>
+        <section class="elements">
+            <ul class="cards">
+                <li class="cards__element">
+                    <img class="cards__image" src="./images/elements/tulskaya_oblast.jpg" alt="Тульская область">
+                    <div class="cards__description">
+                        <h2 class="cards__heading">Тульская область</h2>
+                        <button class="cards__like-button" type="button" aria-label="кнопка 'like'">
+                        </button>
+                    </div>
+                </li>
+                <li class="cards__element">
+                    <img class="cards__image" src="./images/elements/baikal_irkutsk.jpg" alt="Озеро Байкал, Иркутск">
+                    <div class="cards__description">
+                        <h2 class="cards__heading">Озеро Байкал, Иркутск</h2>
+                        <button class="cards__like-button" type="button" aria-label="кнопка 'like'">
+                        </button>
+                    </div>
+                </li>
+                <li class="cards__element">
+                    <img class="cards__image" src="./images/elements/kamchatka.jpg" alt="Камчатка">
+                    <div class="cards__description">
+                        <h2 class="cards__heading">Камчатка</h2>
+                        <button class="cards__like-button" type="button" aria-label="кнопка 'like'">
+                        </button>
+                    </div>
+                </li>
+
+                <li class="cards__element">
+                    <img class="cards__image" src="./images/elements/primorsky_krai_nahodka.jpg" alt="Находка, Приморский край">
+                    <div class="cards__description">
+                        <h2 class="cards__heading">Находка, Приморский край</h2>
+                        <button class="cards__like-button" type="button" aria-label="кнопка 'like'">
+                        </button>
+                    </div>
+                </li>
+
+                <li class="cards__element">
+                    <img class="cards__image" src="./images/elements/ruskeala_karelia.jpg" alt="Рускеала, респ. Карелия">
+                    <div class="cards__description">
+                        <h2 class="cards__heading">Рускеала, респ. Карелия</h2>
+                        <button class="cards__like-button" type="button" aria-label="кнопка 'like'">
+                        </button>
+                    </div>
+                </li>
+
+                <li class="cards__element">
+                    <img class="cards__image" src="./images/elements/saint-petersburg.jpg" alt="Санкт-Петербург">
+                    <div class="cards__description">
+                        <h2 class="cards__heading">Санкт-Петербург</h2>
+                        <button class="cards__like-button" type="button" aria-label="кнопка 'like'">
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__author">
+            © 2022 Ксения Козырева
+        </p>
+    </footer>
+    <div class="popup">
+        <div class="popup__container">
+            <button type="button" class="popup__close-button" aria-label="кнопка закрытия поп-апа"></button>
+            <h3 class="popup__heading">Редактировать профиль</h3>
+            <form class="popup__input-container" name="popup-form">
+                <input type="text" class="popup__input popup__input_name" name="name" value="">
+                <input type="text" class="popup__input popup__input_job" name="job" value="">
+                <button type="submit" class="popup__submit-button">Сохранить</button>
+            </form>
         </div>
     </div>
     <script src="./scripts/index.js"></script>

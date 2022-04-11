@@ -11,6 +11,7 @@
 @media all and (max-width: 700px) {
     .profile__heading {
         font-size: 35px;
+        margin: 22px auto 14px;
     }
 }
 
@@ -18,7 +19,6 @@
     .profile__heading {
         font-size: 27px;
         line-height: 1;
-        margin: 22px auto 14px;
         text-align: center;
     }
 }

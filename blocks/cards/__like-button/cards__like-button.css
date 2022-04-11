@@ -4,6 +4,7 @@
     border: none;
     background: transparent url(../../../images/cards/like-button.svg) center;
     cursor: pointer;
+    align-self: center;
 }
 
 .cards__like-button:hover {
