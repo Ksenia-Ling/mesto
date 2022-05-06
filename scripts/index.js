@@ -8,6 +8,7 @@ const nameInput = userDataForm.querySelector('.popup__input_name');
 const jobInput = userDataForm.querySelector('.popup__input_job');
 const userName = content.querySelector('.profile__heading');
 const userJob = content.querySelector('.profile__subheading');
+const userDataSubmitButton = userDataForm.querySelector('.popup__submit-button_profile')
 
 const cardsContainer = document.querySelector('.cards');
 const templateCards = document.querySelector('.templateCards');
@@ -20,6 +21,7 @@ const popupImageZoomClose = popupImageZoom.querySelector('.popup__close-button')
 const placeAddingButton = content.querySelector('.profile__add-button');
 const popupPlaceWindow = document.querySelector('.popup_new-place');
 const popupPlaceClose = popupPlaceWindow.querySelector('.popup__close-button');
+const placeSubmitButton = popupPlaceWindow.querySelector('.popup__submit-button_new-place');
 
 const newPlaceForm = popupPlaceWindow.querySelector('.popup__input-container');
 const titleInput = newPlaceForm.querySelector('.popup__input_title');
@@ -28,7 +30,6 @@ const linkInput = newPlaceForm.querySelector('.popup__input_link');
 const popupOverlays = Array.from(document.querySelectorAll('.popup'));
 
 function openPopupWindow(popup) {
-  clearValidationErrors();
   popup.classList.add('popup_opened');
   document.addEventListener("keydown", closePopupByEsc);
 }
@@ -86,6 +87,7 @@ function zoomImagePopup(item) {
   popupImageLink.src = item.link;
   popupImageLink.alt = item.name;
   popupImageCaption.textContent = item.name;
+
 }
 
 function handlePlaceFormSubmit(evt) {
@@ -96,21 +98,11 @@ function handlePlaceFormSubmit(evt) {
   newPlaceForm.reset();
 }
 
-function clearValidationErrors() {
-  const errors = Array.from(document.querySelectorAll('.popup__input-error'));
-  const inputs = Array.from(document.querySelectorAll('.popup__input'));
-  errors.forEach((error) => {
-    error.textContent = '';
-  });
-  inputs.forEach((input) => {
-    input.classList.remove('popup__input_type_error');
-  });
-}
-
-
 profileEditButton.addEventListener('click', function () {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
+  clearValidationErrors(formsData);
+  toggleSubmitBtn(userDataForm, formsData, userDataSubmitButton);
   openPopupWindow(popupProfileWindow);
 });
 
@@ -120,15 +112,20 @@ userDataForm.addEventListener('submit', handleProfileFormSubmit);
 
 popupImageZoomClose.addEventListener('click', () => closePopupWindow(popupImageZoom));
 
-placeAddingButton.addEventListener('click', () => openPopupWindow(popupPlaceWindow));
+placeAddingButton.addEventListener('click', function () {
+  clearValidationErrors(formsData);
+  toggleSubmitBtn(newPlaceForm, formsData, placeSubmitButton);
+  openPopupWindow(popupPlaceWindow);
+});
+
 popupPlaceClose.addEventListener('click', () => closePopupWindow(popupPlaceWindow));
 
 newPlaceForm.addEventListener('submit', handlePlaceFormSubmit);
 
 popupOverlays.forEach((overlay) => {
-  overlay.addEventListener('click', (evt) => {
+  overlay.addEventListener('mousedown', (evt) => {
     if (evt.target === evt.currentTarget) {
-      closePopupWindow(document.querySelector(".popup_opened"));
+      closePopupWindow(evt.target);
     };
   });
 });
