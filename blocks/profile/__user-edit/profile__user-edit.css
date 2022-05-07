@@ -5,8 +5,9 @@
     align-items: baseline;
 }
 
-@media all and (max-width: 630px) {
+@media all and (max-width: 680px) {
     .profile__user-edit {
         margin: 0 0 36px 0;
+        max-width: 100%;
     }
 }

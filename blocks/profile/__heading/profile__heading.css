@@ -15,10 +15,17 @@
     }
 }
 
+@media all and (max-width: 680px) {
+    .profile__heading {
+        padding-left: 21px;
+    }
+}
+
 @media all and (max-width: 320px) {
     .profile__heading {
         font-size: 27px;
         line-height: 1;
         text-align: center;
+        padding-left: 18px;
     }
 }

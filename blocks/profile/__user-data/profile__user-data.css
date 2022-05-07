@@ -5,9 +5,15 @@
    max-width: calc(295px + 18px);
 }
 
+@media all and (max-width: 680px) {
+   .profile__user-data {
+      max-width: calc(100% - 21px);
+   }
+}
+
 @media all and (max-width: 320px) {
    .profile__user-data {
-      max-width: 282px;
-      padding: 0;
+      max-width: calc(100% - 18px);
+      padding-right: 10px;
    }
 }

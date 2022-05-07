@@ -14,9 +14,16 @@
     }
 }
 
-@media all and (max-width: 630px) {
+@media all and (max-width: 680px) {
     .profile__subheading {
         font-size: 14px;
         text-align: center;
+        padding-left: 21px;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .profile__subheading {
+        padding-left: 18px;
     }
 }

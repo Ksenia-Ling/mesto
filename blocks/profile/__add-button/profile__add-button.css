@@ -15,14 +15,7 @@
     transition-timing-function: ease-in-out;
 }
 
-@media all and (max-width: 700px) {
-    .profile__add-button {
-        width: 130px;
-        height: 40px;
-    }
-}
-
-@media all and (max-width: 630px) {
+@media all and (max-width: 680px) {
     .profile__add-button {
         width: 100%;
     }
