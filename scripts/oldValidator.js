@@ -1,12 +1,4 @@
-const formsData = {
-    formSelector: '.popup__input-container',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit-button',
-    spanErrorSelector: '.popup__input-error',
-    inactiveButtonClass: 'popup__submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-}
-
+//вызовем в index.js
 function enableValidation(formsData) {
     const forms = Array.from(document.querySelectorAll(formsData.formSelector));
     forms.forEach((form) => {
@@ -17,10 +9,10 @@ function enableValidation(formsData) {
     });
 }
 
-function toggleSubmitBtn(form, formsData, submitButton) {
-    submitButton.toggleAttribute('disabled', !form.checkValidity());
-    submitButton.classList.toggle(formsData.inactiveButtonClass, !form.checkValidity());
-};
+// function toggleSubmitBtn(form, formsData, submitButton) {
+//     submitButton.toggleAttribute('disabled', !form.checkValidity());
+//     submitButton.classList.toggle(formsData.inactiveButtonClass, !form.checkValidity());
+// };
 
 function setEventListeners(form, formsData) {
     const formInputs = Array.from(document.querySelectorAll(formsData.inputSelector));
@@ -34,17 +26,17 @@ function setEventListeners(form, formsData) {
     });
 }
 
-function validateFormInput(evt, form, formsData) {
-    const input = evt.target;
-    const error = document.querySelector(`#${input.id}-error`);
-    if (!input.validity.valid) {
-        input.classList.add(formsData.inputErrorClass);
-        error.textContent = input.validationMessage;
-    } else {
-        input.classList.remove(formsData.inputErrorClass);
-        error.textContent = "";
-    }
-}
+// function validateFormInput(evt, form, formsData) {
+//     const input = evt.target;
+//     const error = document.querySelector(`#${input.id}-error`);
+//     if (!input.validity.valid) {
+//         input.classList.add(formsData.inputErrorClass);
+//         error.textContent = input.validationMessage;
+//     } else {
+//         input.classList.remove(formsData.inputErrorClass);
+//         error.textContent = "";
+//     }
+// }
 
 function clearValidationErrors(formsData) {
     const errors = Array.from(document.querySelectorAll(formsData.spanErrorSelector));
@@ -58,3 +50,5 @@ function clearValidationErrors(formsData) {
 }
 
 enableValidation(formsData); 
+
+   
