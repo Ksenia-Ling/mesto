@@ -1,4 +1,5 @@
 import { openPopupWindow } from './utils.js';
+import { popupImageZoom, popupImageLink, popupImageName } from './utils.js';
 
 export default class Card {
   constructor({ name, link }, templateSelector) {
@@ -9,13 +10,11 @@ export default class Card {
 
   //приватный метод для работы с разметкой
   _getTemplate() {
-    this._cardElement = document
+    return document
       .querySelector(this._templateSelector)
       .content
       .querySelector('.cards__element')
       .cloneNode(true);
-
-    return this._cardElement;
   }
 
   //публич. метод, возвращающий работоспособный, наполненный данными эл-т карточки
@@ -36,15 +35,14 @@ export default class Card {
   }
 
   _zoomImagePopup() {
-    this._popupImage = document.querySelector('.popup_image-zoom');
-    openPopupWindow(this._popupImage);
-    this._popupImage.querySelector('.popup__image-link').src = this._link;
-    this._popupImage.querySelector('.popup__image-link').alt = this._name;
-    this._popupImage.querySelector('.popup__image-caption').textContent = this._name;
+    openPopupWindow(popupImageZoom);
+    popupImageLink.src = this._link;
+    popupImageLink.alt = this._name;
+    popupImageName.textContent = this._name;
   }
 
   _deleteCard() {
-    this._cardElement.remove();
+    this._element.remove();
   }
 
   _toggleLikeButton() {
