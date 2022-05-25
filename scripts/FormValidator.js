@@ -6,9 +6,12 @@ export default class FormValidator {
         this._form = form;
         this._input = formConfig.input;
         this._submitButtonSelector = formConfig.submitButtonSelector;
+        this._submitBtn = this._form.querySelector(this._submitButtonSelector);
         this._spanErrorSelector = formConfig.spanErrorSelector;
         this._inactiveButtonClass = formConfig.inactiveButtonClass;
         this._inputErrorClass = formConfig.inputErrorClass;
+        this._formInputs = Array.from(this._form.querySelectorAll(formConfig.inputSelector));
+        this._errors = Array.from(this._form.querySelectorAll(formConfig.spanErrorSelector));
     }
 
 
@@ -24,32 +27,29 @@ export default class FormValidator {
         }
     }
 
-    //приватный метод для изменения состоян. сабмита
-    _toggleSubmitBtn() {
-        this._form.querySelector(this._submitButtonSelector).toggleAttribute('disabled', !this._form.checkValidity());
-        this._form.querySelector(this._submitButtonSelector).classList.toggle(this._inactiveButtonClass, !this._form.checkValidity());
+    //публичный метод для изменения состоян. сабмита
+    toggleSubmitBtn() {
+        this._submitBtn.toggleAttribute('disabled', !this._form.checkValidity());
+        this._submitBtn.classList.toggle(this._inactiveButtonClass, !this._form.checkValidity());
     }
 
     //приватная установка слушателей
     _setEventListeners() {
-
-        this._formInputs = Array.from(this._form.querySelectorAll(formConfig.inputSelector));
-        this._toggleSubmitBtn();
+        this.toggleSubmitBtn();
         this._formInputs.forEach((input) => {
             input.addEventListener('input', () => {
                 this._validateFormInput(input);
-                this._toggleSubmitBtn();
+                this.toggleSubmitBtn();
             });
         });
     }
 
     clearValidationErrors() {
-        this._errors = Array.from(this._form.querySelectorAll(formConfig.spanErrorSelector));
-        this._inputs = Array.from(this._form.querySelectorAll(this._input));
         this._errors.forEach((error) => {
             error.textContent = '';
+            error.classList.remove(formConfig.spanErrorSelector);
         });
-        this._inputs.forEach((input) => {
+        this._formInputs.forEach((input) => {
             input.classList.remove(formConfig.inputErrorClass);
         });
     };
@@ -63,6 +63,3 @@ export default class FormValidator {
     };
 
 }
-
-
-
