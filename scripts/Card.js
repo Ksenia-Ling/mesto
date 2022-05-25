@@ -1,7 +1,7 @@
 import { openPopupWindow } from './utils.js';
 
 export default class Card {
-  constructor({name, link}, templateSelector) {
+  constructor({ name, link }, templateSelector) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
@@ -50,7 +50,7 @@ export default class Card {
   _toggleLikeButton() {
     this._elementLikeBtn.classList.toggle('cards__like-button_active');
   }
-  
+
   //приватный метод для слушателей(для каждого обр. - приватный метод)
   _setEventListeners() {
     this._element.querySelector('.cards__image').addEventListener('click', () => { this._zoomImagePopup() });

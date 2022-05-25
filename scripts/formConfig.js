@@ -1,5 +1,6 @@
-export const formsData = {
+export const formConfig = {
     formSelector: '.popup__input-container',
+    input: 'popup__input',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit-button',
     spanErrorSelector: '.popup__input-error',

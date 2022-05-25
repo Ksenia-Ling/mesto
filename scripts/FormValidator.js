@@ -1,67 +1,68 @@
-import { formsData } from "./formsData.js";
+import { formConfig } from "./formConfig.js";
 
 export default class FormValidator {
-    constructor(formsData, formSelector) {
-        this._formsData = formsData;
-        this._form = formSelector;
-        this._input = formsData.inputSelector;
-        this._submitButtonSelector = formsData.submitButtonSelector;
-        this._spanErrorSelector = formsData.spanErrorSelector;
-        this._inactiveButtonClass = formsData.inactiveButtonClass;
-        this._inputErrorClass = formsData.inputErrorClass;
+    constructor(formConfig, form) {
+        this._formConfig = formConfig;
+        this._form = form;
+        this._input = formConfig.input;
+        this._submitButtonSelector = formConfig.submitButtonSelector;
+        this._spanErrorSelector = formConfig.spanErrorSelector;
+        this._inactiveButtonClass = formConfig.inactiveButtonClass;
+        this._inputErrorClass = formConfig.inputErrorClass;
     }
-    
-    
+
+
     //приватный метод для валидации поля
-    _validateFormInput() {
-        this._error = this._form.querySelector(`#${inputSelector.id}-error`);
-    if (!inputSelector.validity.valid) {
-        inputSelector.classList.add(this._inputErrorClass);
-        error.textContent = inputSelector.validationMessage;
-    } else {
-        inputSelector.classList.remove(this._inputErrorClass);
-        error.textContent = "";
+    _validateFormInput(input) {
+        this._error = this._form.querySelector(`#${input.id}-error`);
+        if (!input.validity.valid) {
+            input.classList.add(this._inputErrorClass);
+            this._error.textContent = input.validationMessage;
+        } else {
+            input.classList.remove(this._inputErrorClass);
+            this._error.textContent = "";
+        }
     }
-}
-    
+
     //приватный метод для изменения состоян. сабмита
     _toggleSubmitBtn() {
-        this._submitButtonSelector.toggleAttribute('disabled', !this._form.checkValidity());
-        this._submitButtonSelector.classList.toggle(this._inactiveButtonClass, !this._form.checkValidity());
+        this._form.querySelector(this._submitButtonSelector).toggleAttribute('disabled', !this._form.checkValidity());
+        this._form.querySelector(this._submitButtonSelector).classList.toggle(this._inactiveButtonClass, !this._form.checkValidity());
     }
 
     //приватная установка слушателей
     _setEventListeners() {
-        this._formInputs = Array.from(document.querySelectorAll(formsData.inputSelector));
+
+        this._formInputs = Array.from(this._form.querySelectorAll(formConfig.inputSelector));
         this._toggleSubmitBtn();
         this._formInputs.forEach((input) => {
-        input.addEventListener('input', (evt) => {
-            this._validateFormInput();
-            this._toggleSubmitBtn();
+            input.addEventListener('input', () => {
+                this._validateFormInput(input);
+                this._toggleSubmitBtn();
+            });
         });
-    });
     }
 
     clearValidationErrors() {
-        this._errors = Array.from(this._form.querySelectorAll(this._error));
+        this._errors = Array.from(this._form.querySelectorAll(formConfig.spanErrorSelector));
         this._inputs = Array.from(this._form.querySelectorAll(this._input));
-        errors.forEach((error) => {
-        error.textContent = '';
-    });
-    this._inputs.forEach((input) => {
-        input.classList.remove(formsData.inputErrorClass);
-    });
+        this._errors.forEach((error) => {
+            error.textContent = '';
+        });
+        this._inputs.forEach((input) => {
+            input.classList.remove(formConfig.inputErrorClass);
+        });
     };
 
-      //публичн. метод, включающий валидацию формы
+    //публичн. метод, включающий валидацию формы
     enableValidation() {
-        this._cardForm.addEventListener("submit", (evt) => {
+        this._form.addEventListener("submit", (evt) => {
             evt.preventDefault();
         });
         this._setEventListeners();
     };
 
 }
-  
+
 
 
