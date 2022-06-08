@@ -1,3 +1,11 @@
+import tulskayaImage from '../images/elements/tulskaya_oblast.jpg';
+import baikalImage from '../images/elements/baikal_irkutsk.jpg';
+import nahodkaImage from '../images/elements/primorsky_krai_nahodka.jpg';
+import kamchatkaImage from '../images/elements/kamchatka.jpg';
+import ruskealaImage from '../images/elements/ruskeala_karelia.jpg';
+import petersburgImage from '../images/elements/saint-petersburg.jpg';
+
+
 export const content = document.querySelector('.content');
 export const profileEditButton = content.querySelector('.profile__edit-button');
 export const popupProfileWindow = document.querySelector('.popup_type_profile-edit');
@@ -16,28 +24,28 @@ export const titleInput = newPlaceForm.querySelector('.popup__input_type_title')
 export const linkInput = newPlaceForm.querySelector('.popup__input_type_link');
 
 export const initialCards = [
-    {
-      name: 'Тульская область',
-      link: './images/elements/tulskaya_oblast.jpg'
-    },
-    {
-      name: 'Озеро Байкал, Иркутск',
-      link: './images/elements/baikal_irkutsk.jpg'
-    },
-    {
-      name: 'Находка, Приморский край',
-      link: './images/elements/primorsky_krai_nahodka.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: './images/elements/kamchatka.jpg'
-    },
-    {
-      name: 'Рускеала, респ. Карелия',
-      link: './images/elements/ruskeala_karelia.jpg'
-    },
-    {
-      name: 'Санкт-Петербург',
-      link: './images/elements/saint-petersburg.jpg'
-    }
-  ];
+  {
+    name: 'Тульская область',
+    link: tulskayaImage
+  },
+  {
+    name: 'Озеро Байкал, Иркутск',
+    link: baikalImage
+  },
+  {
+    name: 'Находка, Приморский край',
+    link: nahodkaImage
+  },
+  {
+    name: 'Камчатка',
+    link: kamchatkaImage
+  },
+  {
+    name: 'Рускеала, респ. Карелия',
+    link: ruskealaImage
+  },
+  {
+    name: 'Санкт-Петербург',
+    link: petersburgImage
+  }
+];
