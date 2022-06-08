@@ -1,10 +1,8 @@
-import { openPopupWindow } from './utils.js';
-import { popupImageZoom, popupImageLink, popupImageName } from './utils.js';
-
 export default class Card {
-  constructor({ name, link }, templateSelector) {
+  constructor({ name, link }, handleCardClick, templateSelector) {
     this._name = name;
     this._link = link;
+    this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
   }
 
@@ -34,24 +32,19 @@ export default class Card {
     return this._element;
   }
 
-  _zoomImagePopup() {
-    openPopupWindow(popupImageZoom);
-    popupImageLink.src = this._link;
-    popupImageLink.alt = this._name;
-    popupImageName.textContent = this._name;
-  }
-
+  //приватный метод для удаления карточки
   _deleteCard() {
     this._element.remove();
   }
 
+  //приватный метод для лайка
   _toggleLikeButton() {
     this._elementLikeBtn.classList.toggle('cards__like-button_active');
   }
 
   //приватный метод для слушателей(для каждого обр. - приватный метод)
   _setEventListeners() {
-    this._element.querySelector('.cards__image').addEventListener('click', () => { this._zoomImagePopup() });
+    this._elementImage.addEventListener('click', () => { this._handleCardClick(this._link, this._name) });
     this._elementRemoveBtn.addEventListener('click', () => { this._deleteCard() });
     this._elementLikeBtn.addEventListener('click', () => { this._toggleLikeButton() });
   }

@@ -1,4 +1,4 @@
-import { formConfig } from "./formConfig.js";
+import { formConfig } from "../utils/formConfig.js";
 
 export default class FormValidator {
     constructor(formConfig, form) {
