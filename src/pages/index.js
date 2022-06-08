@@ -1,28 +1,23 @@
-import { initialCards } from './initialCards.js';
-import { formConfig } from './formConfig.js';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import UserInfo from './UserInfo.js';
+import {
+  profileEditButton,
+  userDataForm,
+  nameInput,
+  jobInput,
+  cardsContainer,
+  placeAddingButton,
+  newPlaceForm,
+  titleInput,
+  linkInput,
+  initialCards
+} from '../utils/constants.js';
+import { formConfig } from '../utils/formConfig.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 
-const content = document.querySelector('.content');
-const profileEditButton = content.querySelector('.profile__edit-button');
-const popupProfileWindow = document.querySelector('.popup_type_profile-edit');
-
-const userDataForm = popupProfileWindow.querySelector('.popup__input-container');
-const nameInput = userDataForm.querySelector('.popup__input_type_name');
-const jobInput = userDataForm.querySelector('.popup__input_type_job');
-
-const cardsContainer = document.querySelector('.cards');
-
-const placeAddingButton = content.querySelector('.profile__add-button');
-const popupPlaceWindow = document.querySelector('.popup_type_new-place');
-
-const newPlaceForm = popupPlaceWindow.querySelector('.popup__input-container');
-const titleInput = newPlaceForm.querySelector('.popup__input_type_title');
-const linkInput = newPlaceForm.querySelector('.popup__input_type_link');
 
 //для каждой формы - экз. класса FormValidator
 const userDataFormValidator = new FormValidator(formConfig, userDataForm);
