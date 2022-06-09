@@ -3,13 +3,14 @@ export default class Popup {
         this._popupSelector = popupSelector;
         this._popup = document.querySelector(popupSelector);
         this._popupCloseIcon = this._popup.querySelector('.popup__close-button');
+        this._handleEscClose = this._handleEscClose.bind(this);
     }
 
 
     // публичные методы open и close, которые отвечают за открытие и закрытие попапа.
     open() {
         this._popup.classList.add('popup_opened');
-        document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
+        document.addEventListener("keydown", this._handleEscClose);
 
     }
 
@@ -27,14 +28,12 @@ export default class Popup {
 
 
     // публичный метод, который добавляет слушатель клика иконке закрытия попапа. 
+    // Модальное окно также закрывается при клике на затемнённую область вокруг формы.
     setEventListeners() {
-        this._popupCloseIcon.addEventListener('click', () => this.close());
-
-        // Модальное окно также закрывается при клике на затемнённую область вокруг формы.
-        this._popup.addEventListener('mousedown', (evt) => {
-            if (evt.target === evt.currentTarget) {
+        this._popup.addEventListener('click', (evt) => {
+            if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
                 this.close();
-            };
+            }
         });
     }
 }

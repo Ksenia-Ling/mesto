@@ -81,7 +81,7 @@ profileEditButton.addEventListener('click', () => {
   userDataFormValidator.toggleSubmitBtn();
 });
 
-placeAddingButton.addEventListener('click', function () {
+placeAddingButton.addEventListener('click', () => {
   newPlaceFormValidator.clearValidationErrors();
   newPlaceFormValidator.toggleSubmitBtn();;
   placeForm.open();

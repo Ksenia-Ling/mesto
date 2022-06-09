@@ -44,8 +44,8 @@ export default class Card {
 
   //приватный метод для слушателей(для каждого обр. - приватный метод)
   _setEventListeners() {
-    this._elementImage.addEventListener('click', () => { this._handleCardClick(this._link, this._name) });
-    this._elementRemoveBtn.addEventListener('click', () => { this._deleteCard() });
-    this._elementLikeBtn.addEventListener('click', () => { this._toggleLikeButton() });
+    this._elementImage.addEventListener('click', () =>  this._handleCardClick(this._link, this._name) );
+    this._elementRemoveBtn.addEventListener('click', () =>  this._deleteCard() );
+    this._elementLikeBtn.addEventListener('click', () =>  this._toggleLikeButton() );
   }
 }
