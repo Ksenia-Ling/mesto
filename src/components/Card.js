@@ -49,9 +49,6 @@ export default class Card {
     if (this._userId === this.ownerId) {
       this._elementRemoveBtn.style.visibility = 'visible';
     }
-    else {
-      this._elementRemoveBtn.style.visibility = 'hidden';
-    }
   }
 
   // метод для удаления карточки
