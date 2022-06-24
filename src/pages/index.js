@@ -15,9 +15,9 @@ import {
   linkInput,
   avatarEditForm,
   avatarLinkInput,
-  // cardRemoveButton
-  // initialCards
-} from '../utils/constants.js';
+
+}
+  from '../utils/constants.js';
 import { formConfig } from '../utils/formConfig.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -44,7 +44,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       profileJob.textContent = currentUserInfo.about,
       profileAvatar.src = currentUserInfo.avatar,
       userId = currentUserInfo._id,
-    cardsList.renderItems(cards, currentUserInfo._id)
+      cardsList.renderItems(cards, currentUserInfo._id)
   })
   .catch((err) => {
     console.log(err);
@@ -100,7 +100,7 @@ const placeForm = new PopupWithForm({
   handleFormSubmit: () => {
     api.addCard(titleInput.value, linkInput.value)
       .then((res) => {
-        cardsContainer.prepend(createNewCard({ name: res.name, link: res.link, id: res._id }, '.templateCards'));
+        cardsContainer.prepend(createNewCard(res, res._id));
         placeForm.close();
       })
   }
@@ -110,7 +110,7 @@ const popupDeleteConfirm = new PopupWithConfirmation(
   '.popup_type_delete-confirmation');
 
 function createNewCard(data, userId) {
-  const card = new Card({ data, userId},
+  const card = new Card({ data, userId },
     {
       handleCardClick:
         (link, name) => {
@@ -181,7 +181,6 @@ profileEditButton.addEventListener('click', () => {
   profileForm.open();
   nameInput.value = info.name;
   jobInput.value = info.job;
-  // avatarLinkInput = info.avatar;
   userDataFormValidator.toggleSubmitBtn();
 });
 

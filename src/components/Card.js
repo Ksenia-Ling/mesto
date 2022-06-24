@@ -3,7 +3,7 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardId = data._id;
-    this._ownerId = data.owner_id;
+    this._ownerId = data.owner._id;
     this._userId = userId;
     this._likes = data.likes;
     this._handleCardClick = handleCardClick;
@@ -46,7 +46,7 @@ export default class Card {
   }
 
   _addRemoveButton() {
-    if (this._userId === this.ownerId) {
+    if (this._userId === this._ownerId) {
       this._elementRemoveBtn.style.visibility = 'visible';
     }
   }
