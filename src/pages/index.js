@@ -43,8 +43,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     profileName.textContent = currentUserInfo.name,
       profileJob.textContent = currentUserInfo.about,
       profileAvatar.src = currentUserInfo.avatar,
-      userId = currentUserInfo._id;
-    cardsList.renderItems(cards, currentUserInfo._id);
+      userId = currentUserInfo._id,
+    cardsList.renderItems(cards, currentUserInfo._id)
   })
   .catch((err) => {
     console.log(err);
@@ -136,7 +136,7 @@ function createNewCard(data, userId) {
     {
       handleLikeClick:
         () => {
-          if (card.checkLike()) {
+          if (card.checkLike(true)) {
             api.removeLike(card.getCardId())
               .then((res) =>
                 card.removeLike(res.likes))
@@ -173,8 +173,7 @@ profileAvatarButton.addEventListener('click', () => {
   avatarEditFormValidator.toggleSubmitBtn();
   popupAvatarEdit.open();
   avatarEditFormValidator.clearValidationErrors();
-  ;
-})
+});
 
 profileEditButton.addEventListener('click', () => {
   userDataFormValidator.clearValidationErrors();
@@ -182,7 +181,7 @@ profileEditButton.addEventListener('click', () => {
   profileForm.open();
   nameInput.value = info.name;
   jobInput.value = info.job;
-  avatarLinkInput = info.avatar;
+  // avatarLinkInput = info.avatar;
   userDataFormValidator.toggleSubmitBtn();
 });
 

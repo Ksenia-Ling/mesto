@@ -7,10 +7,11 @@ export default class Section {
 
 
     // публичный метод, который отвечает за отрисовку всех элементов. 
-    renderItems(items) {
+    renderItems(items, userId) {
         this._renderedItems = items;
+        this._userId = userId;
         this._renderedItems.forEach((item) => {
-            this._renderer(item);
+            this._renderer(item, userId);
 
         });
     }

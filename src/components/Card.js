@@ -27,7 +27,7 @@ export default class Card {
     this._elementImage = this._element.querySelector('.cards__image');
     this._elementName = this._element.querySelector('.cards__heading');
     this._elementLikeBtn = this._element.querySelector('.cards__like-button');
-    this._likeCounter = this._element.querySelector('cards__like-counter');
+    this._likeCounter = this._element.querySelector('.cards__like-counter');
     this._elementRemoveBtn = this._element.querySelector('.cards__remove-button');
 
     this._elementImage.src = this._link;
@@ -48,6 +48,9 @@ export default class Card {
   _addRemoveButton() {
     if (this._userId === this.ownerId) {
       this._elementRemoveBtn.style.visibility = 'visible';
+    }
+    else {
+      this._elementRemoveBtn.style.visibility = 'hidden';
     }
   }
 
@@ -74,8 +77,8 @@ export default class Card {
 
   // проверка, есть ли лайк
   checkLike() {
-    this._likes.find((like) => {
-      return like.id === this._userId;
+    return this._likes.find((like) => {
+      return like._id === this._userId;
     });
   }
 
@@ -84,7 +87,7 @@ export default class Card {
   }
 
   addLikeActiveClass() {
-    if (this.checkLike()) {
+    if (this.checkLike(true)) {
       this._elementLikeBtn.classList.add("cards__like-button_active");
     }
   }
