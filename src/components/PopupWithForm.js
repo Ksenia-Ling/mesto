@@ -6,6 +6,8 @@ export default class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit;
         this._inputs = this._popup.querySelectorAll('.popup__input');
         this._form = this._popup.querySelector('.popup__input-container');
+        this._submitBtn = this._popup.querySelector('.popup__submit-button');
+        this._initialBtnText = this._submitBtn.textContent;
     }
 
     // приватный метод , который собирает данные всех полей формы.
@@ -23,14 +25,15 @@ export default class PopupWithForm extends Popup {
         super.setEventListeners();
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
+            this._submitBtn.textContent = 'Сохранение...';
             this._handleFormSubmit(this._getInputValues());
-
         })
     }
 
     // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
-    close() {
+    close() { 
         super.close();
         this._form.reset();
+        this._submitBtn.textContent = this._initialBtnText;
     }
 }
