@@ -41,7 +41,7 @@ const api = new Api({
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([currentUserInfo, cards]) => {
     userInfo.setUserInfo(currentUserInfo.name, currentUserInfo.about),
-    userInfo.setAvatar(currentUserInfo.avatar),
+      userInfo.setAvatar(currentUserInfo.avatar),
       userId = currentUserInfo._id,
       cardsList.renderItems(cards, currentUserInfo._id)
   })
@@ -72,10 +72,13 @@ const popupAvatarEdit = new PopupWithForm({
     api.editAvatar(avatarLinkInput.value)
       .then((res) =>
         userInfo.setAvatar(res.avatar),
-    popupAvatarEdit.close())
-    .catch((err) => {
-      console.log(err)
-    })
+        popupAvatarEdit.close())
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        popupAvatarEdit.returnInitialBtnText()
+      })
   }
 });
 
@@ -93,8 +96,8 @@ const profileForm = new PopupWithForm({
     api.editProfile(nameInput.value, jobInput.value)
       .then((res) => {
         userInfo.setUserInfo(res.name, res.about),
-    profileForm.close()
-  })
+          profileForm.close()
+      })
       .catch((err) => {
         console.log(err)
       })
@@ -109,7 +112,7 @@ const placeForm = new PopupWithForm({
   handleFormSubmit: () => {
     api.addCard(titleInput.value, linkInput.value)
       .then((res) => {
-        cardsList.addItem(createNewCard(res, res._id));
+        cardsList.addItem(createNewCard(res, userId));
         placeForm.close();
       })
       .catch((err) => {
@@ -192,8 +195,8 @@ profileEditButton.addEventListener('click', () => {
   userDataFormValidator.clearValidationErrors();
   const info = userInfo.getUserInfo();
   profileForm.open();
-  userInfo.setUserInfo(info.name, info.about),
-  userDataFormValidator.toggleSubmitBtn();
+  userInfo.setUserInfo(info.name, info.job),
+    userDataFormValidator.toggleSubmitBtn();
 });
 
 placeAddingButton.addEventListener('click', () => {
