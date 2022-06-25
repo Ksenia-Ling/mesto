@@ -58,7 +58,6 @@ export default class Card {
 
   //метод для добавления лайка
   addLike(likes) {
-    this.checkLike(true);
     this._elementLikeBtn.classList.add('cards__like-button_active');
     this.handleLikeCounter(likes);
     this._likes = likes;
@@ -66,7 +65,6 @@ export default class Card {
 
   //метод для удаления лайка
   removeLike(likes) {
-    this.checkLike(false);
     this._elementLikeBtn.classList.remove('cards__like-button_active');
     this.handleLikeCounter(likes);
     this._likes = likes;

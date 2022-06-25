@@ -22,8 +22,8 @@ export default class PopupWithConfirmation extends Popup {
         })
     }
 
-    close() {
-        super.close();
-        this._submitBtn.textContent = this._initialBtnText;
+
+    returnInitialBtnText() {
+        return this._submitBtn.textContent = this._initialBtnText;
     }
 }
