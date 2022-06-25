@@ -4,23 +4,29 @@ export default class Api {
     this._headers = headers;
   }
 
+  _checkResponce(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`);
+  }
+
+
   // получение информации о пользователе
   getUserInfo() {
     return fetch(`${this._url}/users/me`, { headers: this._headers })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 
   // получение изначальных карточек 
   getInitialCards() {
     return fetch(`${this._url}/cards`, { headers: this._headers })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -34,10 +40,9 @@ export default class Api {
         about: userAbout
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -51,24 +56,22 @@ export default class Api {
         link: cardLink
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 
-  
+
   // метод удаления карточки
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -81,10 +84,9 @@ export default class Api {
         avatar: avatarLink
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -94,10 +96,9 @@ export default class Api {
       method: 'PUT',
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -107,10 +108,9 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        };
+      .then(this._checkResponce)
+      .catch((err) => {
+        console.log(err)
       })
   }
 }

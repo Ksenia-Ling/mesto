@@ -40,9 +40,8 @@ const api = new Api({
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([currentUserInfo, cards]) => {
-    profileName.textContent = currentUserInfo.name,
-      profileJob.textContent = currentUserInfo.about,
-      profileAvatar.src = currentUserInfo.avatar,
+    userInfo.setUserInfo(currentUserInfo.name, currentUserInfo.about),
+    userInfo.setAvatar(currentUserInfo.avatar),
       userId = currentUserInfo._id,
       cardsList.renderItems(cards, currentUserInfo._id)
   })
@@ -72,8 +71,11 @@ const popupAvatarEdit = new PopupWithForm({
   handleFormSubmit: () => {
     api.editAvatar(avatarLinkInput.value)
       .then((res) =>
-        userInfo.setAvatar(res.avatar))
-    popupAvatarEdit.close()
+        userInfo.setAvatar(res.avatar),
+    popupAvatarEdit.close())
+    .catch((err) => {
+      console.log(err)
+    })
   }
 });
 
@@ -89,9 +91,16 @@ const profileForm = new PopupWithForm({
   handleFormSubmit: () => {
     // userInfo.setUserInfo(nameInput.value, jobInput.value);
     api.editProfile(nameInput.value, jobInput.value)
-      .then((res) =>
-        userInfo.setUserInfo(res.name, res.about))
-    profileForm.close();
+      .then((res) => {
+        userInfo.setUserInfo(res.name, res.about),
+    profileForm.close()
+  })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        profileForm.returnInitialBtnText()
+      })
   }
 });
 
@@ -100,8 +109,11 @@ const placeForm = new PopupWithForm({
   handleFormSubmit: () => {
     api.addCard(titleInput.value, linkInput.value)
       .then((res) => {
-        cardsContainer.prepend(createNewCard(res, res._id));
+        cardsList.addItem(createNewCard(res, res._id));
         placeForm.close();
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 });
@@ -130,13 +142,16 @@ function createNewCard(data, userId) {
               .catch((err) => {
                 console.log(err)
               })
+              .finally(() => {
+                popupDeleteConfirm.returnInitialBtnText();
+              })
           })
         }
     },
     {
       handleLikeClick:
         () => {
-          if (card.checkLike(true)) {
+          if (card.checkLike()) {
             api.removeLike(card.getCardId())
               .then((res) =>
                 card.removeLike(res.likes))
@@ -157,7 +172,6 @@ function createNewCard(data, userId) {
   return card.generateCard();
 }
 
-
 userDataFormValidator.enableValidation();
 newPlaceFormValidator.enableValidation();
 avatarEditFormValidator.enableValidation();
@@ -172,15 +186,13 @@ profileAvatarButton.addEventListener('click', () => {
   avatarEditFormValidator.clearValidationErrors();
   avatarEditFormValidator.toggleSubmitBtn();
   popupAvatarEdit.open();
-  avatarEditFormValidator.clearValidationErrors();
 });
 
 profileEditButton.addEventListener('click', () => {
   userDataFormValidator.clearValidationErrors();
   const info = userInfo.getUserInfo();
   profileForm.open();
-  nameInput.value = info.name;
-  jobInput.value = info.job;
+  userInfo.setUserInfo(info.name, info.about),
   userDataFormValidator.toggleSubmitBtn();
 });
 
@@ -188,7 +200,6 @@ placeAddingButton.addEventListener('click', () => {
   newPlaceFormValidator.clearValidationErrors();
   newPlaceFormValidator.toggleSubmitBtn();;
   placeForm.open();
-  newPlaceFormValidator.clearValidationErrors();
 });
 
 
