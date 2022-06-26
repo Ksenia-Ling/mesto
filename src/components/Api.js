@@ -16,18 +16,12 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this._url}/users/me`, { headers: this._headers })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   // получение изначальных карточек 
   getInitialCards() {
     return fetch(`${this._url}/cards`, { headers: this._headers })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   // метод редактирования профиля
@@ -41,9 +35,6 @@ export default class Api {
       })
     })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   // метод добавления карточки
@@ -57,9 +48,6 @@ export default class Api {
       })
     })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
 
@@ -70,9 +58,6 @@ export default class Api {
       headers: this._headers,
     })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   // метод редактирования аватара пользователя
@@ -85,9 +70,6 @@ export default class Api {
       })
     })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   // метод добавления лайка
@@ -97,9 +79,6 @@ export default class Api {
       headers: this._headers,
     })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   // метод удаления лайка
@@ -109,9 +88,6 @@ export default class Api {
       headers: this._headers,
     })
       .then(this._checkResponce)
-      .catch((err) => {
-        console.log(err)
-      })
   }
 }
 
