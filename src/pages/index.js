@@ -118,6 +118,9 @@ const placeForm = new PopupWithForm({
       .catch((err) => {
         console.log(err)
       })
+      .finally(() => {
+        placeForm.returnInitialBtnText()
+      })
   }
 });
 
